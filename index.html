@@ -48,7 +48,15 @@
   90% { transform: translate(-1%, 1%); }
 }
 
-html { font-size: 16px; scroll-behavior: smooth; }
+html { font-size: 18px; scroll-behavior: smooth; }
+
+@media (min-width: 1200px) {
+  html { font-size: 20px; }
+}
+
+@media (min-width: 1600px) {
+  html { font-size: 22px; }
+}
 
 body {
   font-family: var(--mono);
@@ -1003,48 +1011,7 @@ a:focus-visible {
   <div class="ornament">— ✦ — ✦ — ✦ —</div>
 </section>
 
-<!-- ═══════════════════ COLOPHON / FOOTER ═══════════════════ -->
-<footer class="colophon">
-  <div class="colophon-grid">
-    <div>
-      <div class="colophon-logo">SIGNAL</div>
-      <p>SIGNAL 科技信号是一本独立科技评论刊物，创刊于 2015 年。我们致力于以深度报道和独立视角，记录技术变革对人类社会的深层影响。</p>
-      <div class="colophon-issn">
-        ISSN 2847-3091 (Print)<br>
-        ISSN 2847-3105 (Online)
-      </div>
-    </div>
-    <div>
-      <h4>编辑部</h4>
-      <p>主编：陈默<br>
-      执行主编：林嘉歆<br>
-      技术顾问：赵铭哲<br>
-      美术总监：方思雅<br>
-      版式设计：Studio Monotype</p>
-    </div>
-    <div>
-      <h4>出版信息</h4>
-      <p>出版：SIGNAL Media Ltd.<br>
-      地址：北京市朝阳区望京<br>
-      &emsp;&emsp;&ensp;SOHO T3-2801<br>
-      印刷：深圳利丰雅高<br>
-      定价：¥ 38.00 / US $5.50</p>
-    </div>
-    <div>
-      <h4>联系方式</h4>
-      <p>编辑部：editor@signal-mag.cn<br>
-      发行部：circulation@signal-mag.cn<br>
-      广告合作：ad@signal-mag.cn<br>
-      订阅热线：400-888-4791</p>
-    </div>
-  </div>
-  <div class="colophon-legal">
-    © 2026 SIGNAL Media Ltd. 版权所有。未经许可，不得以任何形式复制或转载本刊内容。<br>
-    本刊所载文章仅代表作者个人观点，不代表编辑部立场。<br>
-    国内统一连续出版物号：CN 11-5847/TP · 国际标准连续出版物号：ISSN 2847-3091 · 邮发代号：82-947<br>
-    Printed in China on FSC-certified paper · 本刊使用 FSC 认证环保纸张印刷
-  </div>
-</footer>
+
 
 <!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
 <script>
