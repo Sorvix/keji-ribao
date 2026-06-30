@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIGNAL — 科技信号 · 第 47 期</title>
+  <meta name="description" content="SIGNAL 科技信号第47期——记录技术变革对人类社会的深层影响，涵盖人工智能、硬件前沿、互联网、量子计算与科技文化。">
+  <meta property="og:title" content="SIGNAL — 科技信号 · 第 47 期">
+  <meta property="og:description" content="记录技术变革对人类社会的深层影响。封面故事：当硅谷的造神运动遇上了东方的落地哲学。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://signal-mag.cn/issue-47">
+  <meta property="og:image" content="https://signal-mag.cn/og-cover-47.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SIGNAL — 科技信号 · 第 47 期">
+  <meta name="twitter:description" content="记录技术变革对人类社会的深层影响。封面故事：当硅谷的造神运动遇上了东方的落地哲学。">
+  <meta name="twitter:image" content="https://signal-mag.cn/og-cover-47.jpg">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>§</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Noto+Serif+SC:wght@400;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+/* ═══════════════════════════════════════════════════
+   PAPER TEXTURE & BASE
+   ═══════════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --paper: #f4efe6;
+  --paper-dark: #e8e0d0;
+  --ink: #1a1a18;
+  --ink-light: #3d3a35;
+  --ink-faded: #6b6560;
+  --accent: #8b2500;
+  --accent-light: #c44d2a;
+  --rule: #b5ad9e;
+  --serif: 'Playfair Display', 'Source Han Serif SC', 'Noto Serif SC', 'Songti SC', Georgia, serif;
+  --mono: 'IBM Plex Mono', 'Source Han Sans SC', 'Noto Sans SC', 'Courier New', monospace;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-2%, -3%); }
+  20% { transform: translate(3%, 1%); }
+  30% { transform: translate(-1%, 2%); }
+  40% { transform: translate(2%, -2%); }
+  50% { transform: translate(-3%, 3%); }
+  60% { transform: translate(1%, -1%); }
+  70% { transform: translate(-2%, 2%); }
+  80% { transform: translate(3%, -3%); }
+  90% { transform: translate(-1%, 1%); }
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--mono);
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.65;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Paper texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='6' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.5;
+}
+
+/* Grain animation overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  animation: grain 0.5s steps(1) infinite;
+  will-change: auto;
+}
+
+/* Reduced motion - accessibility */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  body::after { animation: none; }
+  .page { opacity: 1 !important; transform: none !important; }
+}
+
+/* ═══════════════════════════════════════════════════
+   MAGAZINE MASTHEAD
+   ═══════════════════════════════════════════════════ */
+.masthead {
+  padding: 2.5rem 3rem 1.5rem;
+  border-bottom: 3px double var(--ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.masthead::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--ink);
+}
+
+.masthead-title {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.masthead-title span {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.45em;
+  display: block;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+  color: var(--ink-faded);
+  font-family: var(--mono);
+}
+
+.masthead-meta {
+  text-align: right;
+  font-size: 0.72rem;
+  line-height: 1.8;
+  color: var(--ink-faded);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════
+   NAVIGATION — TABLE OF CONTENTS STYLE
+   ═══════════════════════════════════════════════════ */
+.toc-nav {
+  padding: 1.8rem 3rem;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.toc-nav a {
+  text-decoration: none;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.toc-nav a .num {
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent);
+  transition: font-size 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              color 0.3s;
+  display: inline-block;
+  min-width: 1.6em;
+  transform-origin: left baseline;
+}
+
+.toc-nav a:hover .num {
+  font-size: 1.6rem;
+  color: var(--accent-light);
+  transform: translateY(-2px);
+}
+
+.toc-nav a:hover { color: var(--accent); }
+
+.toc-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.toc-nav a:hover::after { width: 100%; }
+
+/* ═══════════════════════════════════════════════════
+   ISSUE BANNER
+   ═══════════════════════════════════════════════════ */
+.issue-banner {
+  padding: 1rem 3rem;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-faded);
+}
+
+/* ═══════════════════════════════════════════════════
+   PAGE SECTIONS — PAGE TURN TRANSITIONS
+   ═══════════════════════════════════════════════════ */
+.page {
+  min-height: 100vh;
+  padding: 3rem;
+  position: relative;
+  perspective: 1200px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.page.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-turn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 100%;
+  background: linear-gradient(to left, rgba(0,0,0,0.03) 0%, transparent 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.page:hover .page-turn { opacity: 1; }
+
+/* Section divider */
+.section-rule {
+  width: 100%;
+  height: 0;
+  border: none;
+  border-top: 2px solid var(--ink);
+  margin: 0;
+  position: relative;
+}
+
+.section-rule::after {
+  content: '§';
+  position: absolute;
+  top: -0.65em;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--paper);
+  padding: 0 1rem;
+  font-family: var(--serif);
+  font-size: 0.9rem;
+  color: var(--ink-faded);
+}
+
+/* ═══════════════════════════════════════════════════
+   FEATURED ARTICLE — HERO
+   ═══════════════════════════════════════════════════ */
+.hero-article {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2.5rem;
+  padding-top: 2.5rem;
+  align-items: start;
+}
+
+.hero-headline {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin-left: -3rem; /* bleed left — overflow viewport */
+  padding-left: 0;
+  position: relative;
+}
+
+.hero-headline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.3em;
+  width: 4px;
+  height: 60%;
+  background: var(--accent);
+}
+
+.hero-headline .hl-inner {
+  padding-left: 1.5rem;
+  display: block;
+}
+
+.hero-kicker {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding-left: 1.5rem;
+}
+
+.hero-kicker::before {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: var(--accent);
+}
+
+.hero-body {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--ink-light);
+  columns: 2;
+  column-gap: 2rem;
+  column-rule: 1px solid var(--rule);
+  padding-left: 1.5rem;
+}
+
+.hero-body p + p { text-indent: 1.5em; margin-top: 0; }
+
+.hero-body p:first-child::first-letter {
+  font-family: var(--serif);
+  font-size: 3.2em;
+  float: left;
+  line-height: 0.85;
+  margin: 0.05em 0.12em 0 -0.05em;
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.hero-image-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-image-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: sepia(0.2) contrast(1.05) brightness(0.97);
+}
+
+/* Noise overlay on images */
+.hero-image-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.hero-caption {
+  font-size: 0.68rem;
+  color: var(--ink-faded);
+  margin-top: 0.6rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--rule);
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+}
+
+.hero-caption strong {
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ═══════════════════════════════════════════════════
+   MAGAZINE GRID — UNEQUAL COLUMNS
+   ═══════════════════════════════════════════════════ */
+.magazine-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 1fr;
+  gap: 2rem;
+  padding-top: 2rem;
+}
+
+@media (max-width: 900px) {
+  .magazine-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) {
+  .magazine-grid { grid-template-columns: 1fr; }
+  .hero-article { grid-template-columns: 1fr; }
+  .hero-headline { margin-left: -1rem; }
+  .masthead, .toc-nav, .page, .issue-banner { padding-left: 1.5rem; padding-right: 1.5rem; }
+}
+
+.card {
+  border-top: 2px solid var(--ink);
+  padding-top: 1rem;
+  position: relative;
+}
+
+.card-img {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0.8rem;
+}
+
+.card-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: sepia(0.2) contrast(1.04) brightness(0.96);
+  transition: transform 0.6s ease;
+}
+
+.card:hover .card-img img { transform: scale(1.02); }
+
+.card-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.card-cat {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+.card-title {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.card-excerpt {
+  font-size: 0.78rem;
+  line-height: 1.65;
+  color: var(--ink-light);
+}
+
+.card-meta {
+  font-size: 0.62rem;
+  color: var(--ink-faded);
+  margin-top: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Tall card — spans 2 rows */
+.card.tall { grid-row: span 2; }
+.card.tall .card-title { font-size: 1.7rem; }
+
+/* Pull quote card */
+.pull-quote {
+  border-left: 3px solid var(--accent);
+  padding: 1.5rem 0 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.pull-quote blockquote {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.pull-quote cite {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--ink-faded);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 1rem;
+  font-style: normal;
+}
+
+/* ═══════════════════════════════════════════════════
+   SECONDARY GRID — ASYMMETRIC
+   ═══════════════════════════════════════════════════ */
+.grid-secondary {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr 0.8fr;
+  gap: 2rem;
+  padding-top: 2rem;
+}
+
+@media (max-width: 900px) {
+  .grid-secondary { grid-template-columns: 1fr 1fr; }
+}
+
+/* Mini article list */
+.mini-list { list-style: none; }
+
+.mini-list li {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.mini-list li:last-child { border-bottom: none; }
+
+.mini-list .ml-num {
+  font-family: var(--serif);
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+
+.mini-list .ml-title {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.mini-list .ml-desc {
+  font-size: 0.72rem;
+  color: var(--ink-faded);
+  margin-top: 0.2rem;
+  line-height: 1.5;
+}
+
+/* Wide feature card */
+.wide-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  border-top: 3px solid var(--ink);
+  padding-top: 1.2rem;
+}
+
+.wide-card .wc-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.wide-card .wc-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.2) contrast(1.04) brightness(0.96);
+}
+
+.wide-card .wc-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.wide-card .wc-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ═══════════════════════════════════════════════════
+   SIDEBAR COLUMN
+   ═══════════════════════════════════════════════════ */
+.sidebar-col {
+  border-left: 1px solid var(--rule);
+  padding-left: 1.5rem;
+}
+
+.sidebar-col .sb-heading {
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--ink);
+}
+
+.stat-block { margin-bottom: 1.2rem; }
+
+.stat-num {
+  font-family: var(--serif);
+  font-size: 2.2rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: 0.68rem;
+  color: var(--ink-faded);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.2rem;
+}
+
+/* ═══════════════════════════════════════════════════
+   COLOPHON / FOOTER — MAGAZINE COPYRIGHT PAGE
+   ═══════════════════════════════════════════════════ */
+.colophon {
+  margin-top: 3rem;
+  border-top: 3px double var(--ink);
+  padding: 2.5rem 3rem 3rem;
+  font-size: 0.68rem;
+  line-height: 1.8;
+  color: var(--ink-faded);
+  position: relative;
+}
+
+.colophon::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--ink);
+}
+
+.colophon-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .colophon-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.colophon-grid h4 {
+  font-family: var(--serif);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.colophon-issn {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--ink);
+  letter-spacing: 0.08em;
+  margin-top: 1rem;
+}
+
+.colophon-legal {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.62rem;
+  line-height: 1.7;
+  color: var(--ink-faded);
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.colophon-logo {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.03em;
+}
+
+/* ═══════════════════════════════════════════════════
+   PAGE TURN ANIMATION ON SCROLL
+   ═══════════════════════════════════════════════════ */
+.page-turn-effect { animation: pageFlip 0.8s ease-out; }
+
+@keyframes pageFlip {
+  0% {
+    transform: perspective(1200px) rotateY(-8deg) scale(0.96);
+    opacity: 0.5;
+    filter: brightness(0.9);
+  }
+  60% {
+    transform: perspective(1200px) rotateY(1deg) scale(1.005);
+    opacity: 0.95;
+    filter: brightness(1.02);
+  }
+  100% {
+    transform: perspective(1200px) rotateY(0) scale(1);
+    opacity: 1;
+    filter: brightness(1);
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   MISC
+   ═══════════════════════════════════════════════════ */
+.drop-cap::first-letter {
+  font-family: var(--serif);
+  font-size: 3.5em;
+  float: left;
+  line-height: 0.8;
+  margin: 0.05em 0.15em 0 0;
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.ornament {
+  text-align: center;
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--rule);
+  padding: 1rem 0;
+  letter-spacing: 0.5em;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--paper-dark); }
+::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-faded); }
+::selection { background: var(--accent); color: var(--paper); }
+
+/* Keyboard focus styles - always visible */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* Skip link - accessibility */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.6rem 1.2rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  text-decoration: none;
+  z-index: 10000;
+  transition: top 0.3s ease;
+}
+.skip-link:focus {
+  top: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link { transition: none; }
+}
+</style>
+</head>
+<body>
+  <!-- Skip to content - accessibility -->
+  <a href="#section-cover" class="skip-link">跳转到正文</a>
+
+<!-- ═══════════════════ MASTHEAD ═══════════════════ -->
+<header class="masthead">
+  <div class="masthead-title">
+    SIGNAL
+    <span>科技信号 · Technology Review</span>
+  </div>
+  <div class="masthead-meta">
+    第 47 期 · Vol. XII<br>
+    2026 年 6 月 · June<br>
+    ¥ 38.00 · US $5.50
+  </div>
+</header>
+
+<!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+<nav class="toc-nav" id="toc" aria-label="文章目录">
+  <a href="#section-ai"><span class="num">01</span>人工智能</a>
+  <a href="#section-hardware"><span class="num">02</span>硬件前沿</a>
+  <a href="#section-internet"><span class="num">03</span>互联网</a>
+  <a href="#section-quantum"><span class="num">04</span>量子计算</a>
+  <a href="#section-culture"><span class="num">05</span>科技文化</a>
+</nav>
+
+<!-- ═══════════════════ ISSUE BANNER ═══════════════════ -->
+<div class="issue-banner">
+  <span>SIGNAL Magazine · ISSN 2847-3091</span>
+  <span>Est. 2015 · Beijing · Shanghai · San Francisco</span>
+  <span>Printed on 80gsm Munken Pure</span>
+</div>
+
+<!-- ═══════════════════ PAGE 1: AI ═══════════════════ -->
+<section class="page" id="section-ai">
+  <div class="page-turn"></div>
+  <div class="magazine-grid">
+    <article class="card tall">
+      <div class="card-img">
+        <img src="https://picsum.photos/seed/signal02/600/900" alt="DeepSeek R3模型在数学奥林匹克竞赛中成绩超过人类金牌选手的示意图" loading="lazy" width="600" height="900">
+      </div>
+      <div class="card-cat">人工智能 · Artificial Intelligence</div>
+      <h2 class="card-title">DeepSeek 发布新一代推理模型：在数学奥林匹克上首次超越人类金牌选手</h2>
+      <p class="card-excerpt">这家来自杭州的公司再次让硅谷感到不安。其最新的 R3 模型在国际数学奥林匹克竞赛的历史题目上达到了 97.3% 的正确率，首次超越了人类金牌选手的平均水平。更值得注意的是，该模型仅使用了 1/10 的训练算力。</p>
+      <div class="card-meta">文 / 林嘉歆 · 12 分钟阅读</div>
+    </article>
+
+    <article class="card">
+      <div class="card-img">
+        <img src="https://picsum.photos/seed/signal03/500/350" alt="Figure 03人形机器人在亚马逊仓库中搬运包裹的场景" loading="lazy" width="500" height="350">
+      </div>
+      <div class="card-cat">机器人 · Robotics</div>
+      <h2 class="card-title">Figure 03 进入亚马逊仓库：人形机器人的商业化拐点</h2>
+      <p class="card-excerpt">当 Figure 的第三批机器人正式入驻亚马逊在肯塔基州的物流中心时，行业的欢呼声中夹杂着不安。这不再是实验室演示——它们每天工作 16 小时，处理超过 12,000 个包裹。</p>
+      <div class="card-meta">文 / 张思远 · 8 分钟阅读</div>
+    </article>
+
+    <div class="card pull-quote">
+      <blockquote>"我们不再问 AI 能不能做到，而是问它做到之后，谁来承担后果。"</blockquote>
+      <cite>— 李飞飞，斯坦福大学 HAI 联合主任</cite>
+    </div>
+
+    <article class="card">
+      <div class="card-img">
+        <img src="https://picsum.photos/seed/signal04/500/350" alt="欧盟AI法案相关文档和合规审查流程图示" loading="lazy" width="500" height="350">
+      </div>
+      <div class="card-cat">监管 · Regulation</div>
+      <h2 class="card-title">欧盟 AI 法案生效百日：科技公司的合规成本超预期三倍</h2>
+      <p class="card-excerpt">根据路透社获得的一份内部评估文件，首批受到高风险分类监管的 AI 系统，其合规审计成本平均达到 420 万欧元——是最初预估的三倍以上。中小企业首当其冲。</p>
+      <div class="card-meta">文 / 王大卫 · 6 分钟阅读</div>
+    </article>
+  </div>
+</section>
+
+<hr class="section-rule">
+
+<!-- ═══════════════════ PAGE 3: HARDWARE ═══════════════════ -->
+<section class="page" id="section-hardware">
+  <div class="page-turn"></div>
+  <div class="grid-secondary">
+    <div>
+      <div class="sidebar-col" style="border-left: none; padding-left: 0;">
+        <h3 class="sb-heading">硬件速报</h3>
+        <ul class="mini-list">
+          <li><span class="ml-num">01</span><div class="ml-title">台积电 1.4nm 制程良率突破 70%</div><div class="ml-desc">据供应链消息，N1.4 节点已在竹科厂区完成第三轮流片验证</div></li>
+          <li><span class="ml-num">02</span><div class="ml-title">英伟达 B300 GPU 发布：HBM4 显存带宽翻倍</div><div class="ml-desc">黄仁勋在台北电脑展上揭晓新一代数据中心 GPU</div></li>
+          <li><span class="ml-num">03</span><div class="ml-title">苹果 M5 Ultra 芯片首次集成专用 AI 引擎</div><div class="ml-desc">Neural Engine 核心数增至 40，可本地运行 700 亿参数模型</div></li>
+          <li><span class="ml-num">04</span><div class="ml-title">华为昇腾 920 打破推理吞吐纪录</div><div class="ml-desc">在 MLPerf 推理基准测试中，多个项目超越英伟达 H200</div></li>
+          <li><span class="ml-num">05</span><div class="ml-title">三星宣布 3D DRAM 量产时间表</div><div class="ml-desc">垂直堆叠架构有望在 2027 年实现单颗 128GB 容量</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <article class="wide-card">
+      <div class="wc-img">
+        <img src="https://picsum.photos/seed/signal05/600/400" alt="RISC-V芯片架构示意图与中国国产芯片制造车间" loading="lazy" width="600" height="400">
+      </div>
+      <div class="wc-body">
+        <div class="card-cat">芯片 · Semiconductor</div>
+        <h2 class="card-title">RISC-V 的突围：中国芯片产业的第三条路</h2>
+        <p class="card-excerpt">在 ARM 和 x86 两强争霸的格局下，开源指令集架构 RISC-V 正在中国获得前所未有的政策支持和产业投入。平头哥、赛昉、芯来科技等公司推出的高性能核心已经进入量产阶段。这不仅是技术选择，更是地缘博弈下的战略自主。</p>
+        <div class="card-meta">文 / 赵铭哲 · 15 分钟阅读</div>
+      </div>
+    </article>
+
+    <div class="sidebar-col">
+      <h3 class="sb-heading">本期数据</h3>
+      <div class="stat-block"><div class="stat-num">2.7 万亿</div><div class="stat-label">2026 全球半导体市场规模（美元）</div></div>
+      <div class="stat-block"><div class="stat-num">47%</div><div class="stat-label">中国 AI 芯片自给率</div></div>
+      <div class="stat-block"><div class="stat-num">1.4nm</div><div class="stat-label">台积电最新制程节点</div></div>
+      <div class="stat-block"><div class="stat-num">340W</div><div class="stat-label">B300 GPU 单卡 TDP</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule">
+
+<!-- ═══════════════════ PAGE 4: INTERNET ═══════════════════ -->
+<section class="page" id="section-internet">
+  <div class="page-turn"></div>
+  <div class="magazine-grid" style="grid-template-columns: 1fr 1.3fr 0.7fr;">
+    <article class="card">
+      <div class="card-cat">互联网 · Internet</div>
+      <h2 class="card-title">TikTok 美国业务最终方案落地：甲骨文持股 51%</h2>
+      <p class="card-excerpt">历经四年的拉锯战，TikTok 美国业务的"得克萨斯方案"终于获得国会批准。甲骨文将持有 51% 的股权并全面接管数据安全，字节跳动保留算法授权但放弃董事会席位。</p>
+      <div class="card-meta">文 / 孙瑞 · 10 分钟阅读</div>
+    </article>
+
+    <article class="card tall">
+      <div class="card-img">
+        <img src="https://picsum.photos/seed/signal06/600/800" alt="去中心化社交网络Mastodon和Bluesky的用户界面截图对比" loading="lazy" width="600" height="800">
+      </div>
+      <div class="card-cat">社交 · Social Media</div>
+      <h2 class="card-title">去中心化社交的幻灭与重生：Mastodon 之后，谁来接棒？</h2>
+      <p class="card-excerpt">当 Bluesky 的日活用户在 2026 年初突破 8000 万时，去中心化社交似乎终于迎来了它的时刻。但 AT Protocol 的技术债、内容审核的困境，以及商业模式的缺失，让这场实验充满不确定性。我们深入走访了分布在三大洲的 12 个独立实例运营者，试图回答一个根本问题：去中心化究竟是技术理想主义的终点，还是互联网的下一个范式？</p>
+      <div class="card-meta">文 / 李梦琪 · 20 分钟阅读</div>
+    </article>
+
+    <div class="card pull-quote">
+      <blockquote>"平台越大，用户越像佃农。去中心化不是乌托邦，而是数字时代的土地改革。"</blockquote>
+      <cite>— Jay Graber, Bluesky CEO</cite>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule">
+
+<!-- ═══════════════════ PAGE 5: QUANTUM ═══════════════════ -->
+<section class="page" id="section-quantum">
+  <div class="page-turn"></div>
+  <div class="grid-secondary" style="grid-template-columns: 1.5fr 1fr 0.8fr;">
+    <article class="card">
+      <div class="card-img">
+        <img src="https://picsum.photos/seed/signal07/700/450" alt="Google Willow 2量子处理器芯片的显微摄影图" loading="lazy" width="700" height="450">
+      </div>
+      <div class="card-cat">量子计算 · Quantum Computing</div>
+      <h2 class="card-title">Google 量子纠错突破：逻辑量子比特错误率低于物理比特</h2>
+      <p class="card-excerpt">Google 量子 AI 团队在《自然》杂志发表论文，宣布其 Willow 2 处理器首次实现了逻辑量子比特的错误率低于组成它的任何单个物理量子比特。这一里程碑意味着量子纠错不再是理论承诺，而是工程现实。</p>
+      <div class="card-meta">文 / 周鹤翔 · 14 分钟阅读</div>
+    </article>
+
+    <article class="card">
+      <div class="card-cat">密码学 · Cryptography</div>
+      <h2 class="card-title">后量子密码迁移进入倒计时：NIST 标准全面生效</h2>
+      <p class="card-excerpt">随着 NIST 后量子密码标准正式强制执行，全球金融机构开始了一场静默但浩大的基础设施升级。分析师估计，仅银行系统的迁移成本就将超过 120 亿美元。</p>
+      <div class="card-meta">文 / 何晓东 · 9 分钟阅读</div>
+    </article>
+
+    <div class="sidebar-col">
+      <h3 class="sb-heading">时间线</h3>
+      <ul class="mini-list">
+        <li><span class="ml-num">2019</span><div class="ml-title">量子优越性首次证明</div></li>
+        <li><span class="ml-num">2023</span><div class="ml-title">1000+ 量子比特处理器</div></li>
+        <li><span class="ml-num">2025</span><div class="ml-title">量子纠错实验突破</div></li>
+        <li><span class="ml-num">2026</span><div class="ml-title">逻辑比特优于物理比特</div></li>
+        <li><span class="ml-num">2029?</span><div class="ml-title">实用量子计算?</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="section-rule">
+
+<!-- ═══════════════════ PAGE 6: CULTURE ═══════════════════ -->
+<section class="page" id="section-culture">
+  <div class="page-turn"></div>
+  <div class="magazine-grid" style="grid-template-columns: 0.8fr 1.2fr 1fr;">
+    <article class="card">
+      <div class="card-cat">科技文化 · Culture</div>
+      <h2 class="card-title">数字游民的第三年：当自由变成另一种倦怠</h2>
+      <p class="card-excerpt">清迈、巴厘岛、里斯本——数字游民的"圣地"名单几乎没有变化。但在这个群体内部，一种新的疲惫感正在蔓延。不是对旅行的厌倦，而是对"永远在路上"这一叙事本身的反思。</p>
+      <div class="card-meta">文 / 宋一然 · 11 分钟阅读</div>
+    </article>
+
+    <article class="card">
+      <div class="card-img">
+        <img src="https://picsum.photos/seed/signal08/600/450" alt="粗犷主义风格网页设计作品展示，刻意粗糙的排版与高对比度配色" loading="lazy" width="600" height="450">
+      </div>
+      <div class="card-cat">设计 · Design</div>
+      <h2 class="card-title">Brutalist Web Design 的回潮：为什么丑陋正在成为一种美学选择</h2>
+      <p class="card-excerpt">从 Balenciaga 的网站到个人博客，一种刻意粗糙、反精致的网页设计风格正在流行。它不仅是对模板化设计的反叛，也是对互联网"过度优化"的一种文化抗议。</p>
+      <div class="card-meta">文 / 方思雅 · 7 分钟阅读</div>
+    </article>
+
+    <div class="card pull-quote">
+      <blockquote>"最好的界面不是让人觉得'好用'，而是让人忘记界面的存在。"</blockquote>
+      <cite>— 原研哉，设计师</cite>
+    </div>
+  </div>
+  <div class="ornament">— ✦ — ✦ — ✦ —</div>
+</section>
+
+<!-- ═══════════════════ COLOPHON / FOOTER ═══════════════════ -->
+<footer class="colophon">
+  <div class="colophon-grid">
+    <div>
+      <div class="colophon-logo">SIGNAL</div>
+      <p>SIGNAL 科技信号是一本独立科技评论刊物，创刊于 2015 年。我们致力于以深度报道和独立视角，记录技术变革对人类社会的深层影响。</p>
+      <div class="colophon-issn">
+        ISSN 2847-3091 (Print)<br>
+        ISSN 2847-3105 (Online)
+      </div>
+    </div>
+    <div>
+      <h4>编辑部</h4>
+      <p>主编：陈默<br>
+      执行主编：林嘉歆<br>
+      技术顾问：赵铭哲<br>
+      美术总监：方思雅<br>
+      版式设计：Studio Monotype</p>
+    </div>
+    <div>
+      <h4>出版信息</h4>
+      <p>出版：SIGNAL Media Ltd.<br>
+      地址：北京市朝阳区望京<br>
+      &emsp;&emsp;&ensp;SOHO T3-2801<br>
+      印刷：深圳利丰雅高<br>
+      定价：¥ 38.00 / US $5.50</p>
+    </div>
+    <div>
+      <h4>联系方式</h4>
+      <p>编辑部：editor@signal-mag.cn<br>
+      发行部：circulation@signal-mag.cn<br>
+      广告合作：ad@signal-mag.cn<br>
+      订阅热线：400-888-4791</p>
+    </div>
+  </div>
+  <div class="colophon-legal">
+    © 2026 SIGNAL Media Ltd. 版权所有。未经许可，不得以任何形式复制或转载本刊内容。<br>
+    本刊所载文章仅代表作者个人观点，不代表编辑部立场。<br>
+    国内统一连续出版物号：CN 11-5847/TP · 国际标准连续出版物号：ISSN 2847-3091 · 邮发代号：82-947<br>
+    Printed in China on FSC-certified paper · 本刊使用 FSC 认证环保纸张印刷
+  </div>
+</footer>
+
+<!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
+<script>
+// IntersectionObserver — page-turn reveal
+const pages = document.querySelectorAll('.page');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      entry.target.classList.add('page-turn-effect');
+      setTimeout(() => entry.target.classList.remove('page-turn-effect'), 800);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+pages.forEach(page => observer.observe(page));
+
+// Smooth scroll for TOC
+document.querySelectorAll('.toc-nav a').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Keyboard ← → page navigation
+const sections = [...document.querySelectorAll('.page')];
+let currentSection = 0;
+document.addEventListener('keydown', (e) => {
+  // Only intercept arrows when no input/textarea is focused
+  if (e.target !== document.body) return;
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+    e.preventDefault();
+    currentSection = Math.min(currentSection + 1, sections.length - 1);
+    sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    currentSection = Math.max(currentSection - 1, 0);
+    sections[currentSection].scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+const scrollObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) currentSection = sections.indexOf(entry.target);
+  });
+}, { threshold: 0.5 });
+sections.forEach(s => scrollObserver.observe(s));
+</script>
+</body>
+</html>
